@@ -1,3 +1,4 @@
+import { Queue } from "../common/queue";
 import { Stack } from "../common/stack";
 import { GNodeStr } from "../graph/graph";
 
@@ -50,7 +51,24 @@ function iDfs(start: GNodeStr): string[] {
 /** Return array of nodes, in BFS order (iterative version)  */
 
 function bfs(start: GNodeStr): string[] {
-  return ["todo"];
+  let queue = new Queue([start]);
+  let result: string[] = [];
+  let visited = new Set();
+
+
+  while(!queue.isEmpty()){
+    let curNode = queue.dequeue();
+    visited.add(curNode);
+    result.push(curNode.value);
+
+    for (const adj of curNode.adjacent){
+      if (!visited.has(adj)){
+        visited.add(adj)
+        queue.enqueue(adj)
+      }
+    }
+  }
+  return result;
 }
 
 
