@@ -5,23 +5,25 @@ import { Queue } from "../common/queue";
  * If no path exists, return Infinity. */
 
 function distShortestPath(start: GNodeStr, sought: GNodeStr): number {
-  let queue = new Queue([start]);
+  let queue = new Queue([start]); // M, L
   let shortestDistance = Infinity;
-  let visited = new Set([start])
-  let count = 0
+  let visited = new Set([start]) // R, H, I, T, M, L
+  let count = 0; //4
 
   while (!queue.isEmpty()){
-    let currNode = queue.dequeue()
-    count++
+    let currNode = queue.dequeue() //I
+    // count--;
+    console.log(count)
     if (currNode === sought) {
-      return (count);
+      if(count < shortestDistance){
+        shortestDistance = count;
+      }
     }
     for (let adjNode of currNode.adjacent){
       if (!visited.has(adjNode)){
         visited.add(adjNode)
         queue.enqueue(adjNode)
-      } else{
-        count--
+        count++;
       }
     }
 

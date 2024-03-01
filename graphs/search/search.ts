@@ -30,18 +30,16 @@ function rDfs(
 function iDfs(start: GNodeStr): string[] {
   let stack = new Stack([start]);
   let result: string[] = [];
-  let visited = new Set();
-
+  let visited = new Set([start]);
 
   while(!stack.isEmpty()){
     let curNode = stack.pop();
-    visited.add(curNode);
     result.push(curNode.value);
 
     for (const adj of curNode.adjacent){
       if (!visited.has(adj)){
-        visited.add(adj)
-        stack.push(adj)
+        visited.add(adj);
+        stack.push(adj);
       }
     }
   }
@@ -53,18 +51,16 @@ function iDfs(start: GNodeStr): string[] {
 function bfs(start: GNodeStr): string[] {
   let queue = new Queue([start]);
   let result: string[] = [];
-  let visited = new Set();
-
+  let visited = new Set([start]);
 
   while(!queue.isEmpty()){
     let curNode = queue.dequeue();
-    visited.add(curNode);
     result.push(curNode.value);
 
     for (const adj of curNode.adjacent){
       if (!visited.has(adj)){
-        visited.add(adj)
-        queue.enqueue(adj)
+        visited.add(adj);
+        queue.enqueue(adj);
       }
     }
   }

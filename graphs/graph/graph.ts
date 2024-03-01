@@ -50,11 +50,11 @@ class GraphStr {
 
   /** Remove node from graph. */
   removeNode(node: GNodeStr): void {
-    for (let adjacentNode of node.adjacent){
+    for (const adjacentNode of node.adjacent){
       adjacentNode.adjacent.delete(node)
     }
 
-    node.adjacent.clear
+    node.adjacent.clear();
     this.nodes.delete(node)
   }
 }
